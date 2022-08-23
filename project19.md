@@ -138,3 +138,5 @@ Check the url endpoints:
 
 ![Tg update](./media/wordpressup2.png)
 
+
+Here is the Terraform [repo](https://gitlab.com/enyioma/terraform-project18.git) while [this](https://gitlab.com/enyioma/ansible-deploy-pbl-19.git) is that of Ansible.
