@@ -27,6 +27,8 @@
 - Packer
 - Ansible
 
+![Packer](./media/packer.png)
+
 
 9. Run `terraform plan` and `terraform apply` from web console. Switch to "Runs" tab and click on "Queue plan manualy" button. If planning has been successfull, you can proceed and confirm Apply – press "Confirm and apply", provide a comment and "Confirm plan".
 
@@ -58,4 +60,43 @@
 ![Resources](./media/tg.png)
 
 ![Resources](./media/route53.png)
+
+## Configuring The Infrastructure With Ansible
+
+- After a successfully executing terraform apply, connect to the bastion server through ssh-agent to run ansible against the infrastructure:
+
+![SSH into bastion](./media/bastionssh.png)
+
+- Clone the ansible [repo](https://gitlab.com/enyioma/ansible-deploy-pbl-19.git).
+
+![Clone repo](./media/ansiclone.png)
+
+- Update the nginx.conf.j2 file to input the internal load balancer dns name generated via terraform. 
+
+![Nginx configure](./media/nginxconf.png)
+
+
+- Update the RDS endpoints, Database name, password and username in the `task/setup-db.yml` file for both the tooling and wordpress roles:
+
+
+![RDS configure](./media/rdsconfig.png)
+
+
+- Also update the EFS access points for both tooling and wordpress servers in `task/main.yml` of the respective roles.
+
+-Verify inventory with the following code:
+
+```
+ansible-inventory -i inventory/aws_ec2.yml --graph
+```
+
+![Ansible inventory](./media/ansierror.png)
+
+I had a blocker: "The ec2 dynamic inventory plugin requires boto3 and botocore".
+
+I resolved it with:
+
+```
+sudo python3.8 -m pip install boto3 botocore
+```
 
