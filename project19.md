@@ -82,7 +82,18 @@
 ![RDS configure](./media/rdsconfig.png)
 
 
+
 - Also update the EFS access points for both tooling and wordpress servers in `task/main.yml` of the respective roles.
+
+
+Confirm that the apps are running at the backend:
+
+
+![Curl host](./media/curlhost.png)
+
+
+![Curl host](./media/curlhost3.png)
+
 
 -Verify inventory with the following code:
 
@@ -99,4 +110,31 @@ I resolved it with:
 ```
 sudo python3.8 -m pip install boto3 botocore
 ```
+
+![Ansible inventory](./media/ansigraph.png)
+
+
+- Export the environment variable ANSIBLE_CONFIG to point to the `ansible.cfg` from the repo then run the ansible-playbook command: `ansible-playbook -i inventory/aws_ec2.yml playbook/site.yml`.
+
+
+![Config export](./media/ansiexport.png)
+
+
+- Update the target groups and push the repo:
+
+
+![Tg update](./media/cicd.png)
+
+
+![Tg update](./media/tgmodification.png)
+
+
+Check the url endpoints:
+
+
+![Tooling up](./media/toolingup.png)
+
+![Wordpress up](./media/wordpressup.png)
+
+![Tg update](./media/wordpressup2.png)
 
