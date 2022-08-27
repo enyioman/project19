@@ -1,6 +1,4 @@
-# project19
-Automate Infrastructure With IAC Using Terraform Part 4 – Terraform Cloud
-
+# Automate Infrastructure With IAC Using Terraform Part 4 – Terraform Cloud
 
 AWS Cloud Solution For 2 Company Websites Using A Reverse Proxy Technology
 
